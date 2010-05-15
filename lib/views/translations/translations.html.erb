@@ -11,7 +11,7 @@
 <% end -%>
 
 <% for translation in @translations %>
-  <div id="<%= "translation_#{translation.class}_#{translation.id}" %>">
+  <div id="<%= "translation_#{translation.class}_#{translation.id}" %>" class="translation">
   <% form_for(translation, :url => locale_translation_path(@locale, translation), :remote => true) do |f| %>
     <p><%= translation.raw_key %></p>
     <p>
@@ -22,3 +22,7 @@
   <hr/>
   </div>
 <% end %>
+
+<div class="update-all">
+  <button onclick="$('.translation form').each(function() { $(this).submit(); });">Alle speichern</button>
+</div>
