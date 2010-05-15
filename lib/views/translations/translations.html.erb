@@ -1,7 +1,7 @@
-<% form_tag translations_url do -%>
-<%= select_tag :locale_id,    options_from_collection_for_select(I18nDatabase::Locale.all, :code, :name, @locale.code) -%>
-<%= select_tag :translation_option, options_from_collection_for_select(TranslationOption.all, :code, :description, @translation_option.code) -%>
-<%= submit_tag 'Go' %>
+<% form_tag translations_url, :method => :get do -%>
+  <%= select_tag :locale_id,    options_from_collection_for_select(I18nDatabase::Locale.all, :code, :name, @locale.code) -%>
+  <%= select_tag :translation_option, options_from_collection_for_select(TranslationOption.all, :code, :description, @translation_option.code) -%>
+  <%= submit_tag 'Go' %>
 <% end -%>
 
 <h2><%= @translation_option.description %>: <%= @locale.name %></h2>
