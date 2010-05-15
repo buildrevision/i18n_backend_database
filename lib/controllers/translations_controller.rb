@@ -19,7 +19,7 @@ class TranslationsController < ActionController::Base
   # GET /translations
   # GET /translations.xml
   def translations
-    @locale ||= Locale.default_locale
+    @locale ||= I18nDatabase::Locale.default_locale
     @translation_option = TranslationOption.find(params[:translation_option])
 
     if @translation_option == TranslationOption.translated
@@ -136,6 +136,6 @@ class TranslationsController < ActionController::Base
   private
 
     def find_locale
-      @locale = Locale.find_by_code(params[:locale_id])
+      @locale = I18nDatabase::Locale.find_by_code(params[:locale_id])
     end
 end
