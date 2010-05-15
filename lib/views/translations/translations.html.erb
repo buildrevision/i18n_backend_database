@@ -16,7 +16,7 @@
 
 <% for translation in @translations %>
   <div id="<%= "translation_#{translation.class}_#{translation.id}" %>">
-  <% form_for([@locale, translation]) do |f| %>
+  <% form_for(locale_translation_path(@locale, translation)) do |f| %>
     <p><%= translation.raw_key %></p>
     <p>
       <%= f.text_field :value, :size => 128 %>
