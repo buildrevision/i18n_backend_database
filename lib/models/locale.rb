@@ -41,7 +41,7 @@ module I18nDatabase
     end
 
     def copy_from_default(key, pluralization_index)
-      if !self.default_locale? && Locale.default_locale.has_translation?(key, pluralization_index)
+      if !self.default_locale? && I18nDatabase::Locale.default_locale.has_translation?(key, pluralization_index)
         create_translation(key, key, pluralization_index)
       end
     end
@@ -59,7 +59,7 @@ module I18nDatabase
     end
 
     def default_locale?
-      self == Locale.default_locale
+      self == I18nDatabase::Locale.default_locale
     end
 
     def to_param

@@ -37,7 +37,7 @@ class TranslationsController < ActionController::Base
   # GET /asset_translations
   # GET /asset_translations.xml
   def asset_translations
-    @locale ||= Locale.default_locale
+    @locale ||= I18nDatabase::Locale.default_locale
     @translation_option = TranslationOption.find(params[:translation_option])
 
     @asset_translations  = I18n.asset_translations

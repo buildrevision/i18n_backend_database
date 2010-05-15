@@ -4,10 +4,6 @@
 <%= submit_tag 'Go' %>
 <% end -%>
 
-<p>
-  Textual Translation progress: <span class="progressBar" id="translate_progress"><%= @locale.percentage_translated %></span>
-</p>
-
 <h2><%= @translation_option.description %>: <%= @locale.name %></h2>
 
 <% if @translations.empty? -%>
@@ -16,7 +12,7 @@
 
 <% for translation in @translations %>
   <div id="<%= "translation_#{translation.class}_#{translation.id}" %>">
-  <% form_for(locale_translation_path(@locale, translation)) do |f| %>
+  <% form_for(translation, :url => locale_translation_path(@locale, translation), :remote => true) do |f| %>
     <p><%= translation.raw_key %></p>
     <p>
       <%= f.text_field :value, :size => 128 %>

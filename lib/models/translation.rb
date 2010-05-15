@@ -1,7 +1,7 @@
 require 'digest/md5'
 
 class Translation < ActiveRecord::Base
-  belongs_to :locale
+  belongs_to :locale, :class_name => 'I18nDatabase::Locale'
   validates_presence_of :key
   before_validation :generate_hash_key, :on => :create 
   after_update  :update_cache
@@ -11,7 +11,7 @@ class Translation < ActiveRecord::Base
 
   def default_locale_value(rescue_value='No default locale value')
     begin
-      Locale.default_locale.translations.find_by_key_and_pluralization_index(self.key, self.pluralization_index).value
+      I18nDatabase::Locale.default_locale.translations.find_by_key_and_pluralization_index(self.key, self.pluralization_index).value
     rescue
       rescue_value
     end
