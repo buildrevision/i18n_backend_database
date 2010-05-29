@@ -23,6 +23,11 @@ module I18n
       def cache_store=(store)
         @cache_store = ActiveSupport::Cache.lookup_store(store)
       end
+      
+      # stub for devise
+      def translations()
+        return { :en => { :devise => {:session => {}}}}
+      end
 
       # Handles the lookup and addition of translations to the database
       #

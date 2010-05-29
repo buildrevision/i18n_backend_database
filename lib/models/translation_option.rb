@@ -2,7 +2,11 @@ class TranslationOption
 
   attr_accessor :code, :description
   cattr_accessor :translated, :untranslated
-
+  
+  def self.has_sphinx_indexes?
+    false
+  end
+  
   def initialize(code, description)
     @code, @description = code, description
   end

@@ -2,7 +2,11 @@ module I18nDatabase
   class Locale < ActiveRecord::Base
     validates_presence_of :code
     validates_uniqueness_of :code
-
+    
+    def self.has_sphinx_indexes?
+      false
+    end
+    
     has_many :translations, :dependent => :destroy
     scope :non_defaults, :conditions => ["code != ?", I18n.default_locale.to_s]
 
