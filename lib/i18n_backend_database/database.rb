@@ -145,7 +145,7 @@ module I18n
         def locale_in_context(locale)
           return @locale if @locale && @locale.code == locale.to_s
           #Locale.find_by_code(locale.to_s) rescue nil && (raise InvalidLocale.new(locale))
-          locale = I18nDatabase::Locale.where(:code => locale.to_s).first
+          locale = I18nDatabase::Locale.find_or_create_by_code(:code => locale.to_s)
           raise InvalidLocale.new(locale) unless locale
           locale
         end
